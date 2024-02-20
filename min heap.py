@@ -9,7 +9,6 @@ def rightf(i):
     return (i << 1) + 2
 
 def heapify_down(i):
-    global heap
     smallest = i
     left = leftf(i)
     right = rightf(i)
@@ -33,19 +32,16 @@ def build_min_heap(array):
         heapify_down(i)
 
 def heapify_up(i):
-    global heap
     while i > 0 and heap[parent(i)] > heap[i]:
         parent_index = parent(i)
         heap[i], heap[parent_index] = heap[parent_index], heap[i]
         i = parent_index
 
 def push(value):
-    global heap
     heap.append(value)
     heapify_up(len(heap) - 1)
 
 def pop():
-    global heap
     if not heap:
             return None
     root = heap[0]
@@ -54,10 +50,20 @@ def pop():
     heapify_down(0)
     return root
 
-
-build_min_heap([4, 10, 3, 5, 1])
-print(heap)  
-print(pop())  
-print(heap)  
+print("example-1")
+build_min_heap([5, 11, 4, 6, 2])
+print("Min heap: ",heap)  
+print("element popped: ",pop())  
+print("heap after pop: ",heap)  
+print("element to be pushed: 9")
+push(9)
+print("heap after push: ",heap)  
+print()
+print("example-2")
+build_min_heap([3, 2.46, 4, 10, 1.1])
+print("Min heap: ",heap)  
+print("element popped: ",pop())  
+print("heap after pop: ",heap)  
+print("element to be pushed: 9")
 push(2)
-print(heap)  
+print("heap after push: ",heap)  
